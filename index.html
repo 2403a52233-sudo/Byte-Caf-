@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internet Café Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">INTERNET CAFÉ MANAGEMENT SYSTEM</p>
+      <h1>Byte Café</h1>
+      <p class="subtitle">Manage computers, services, billing, and customer sessions.</p>
+    </div>
+    <div class="header-status"><span class="status-dot"></span> System online</div>
+  </header>
+
+  <main class="container">
+    <section class="stats-grid" aria-label="Cafe summary">
+      <article class="stat-card"><span>Total computers</span><strong id="totalComputers">8</strong><small>Registered devices</small></article>
+      <article class="stat-card"><span>Available</span><strong id="availableComputers">5</strong><small>Ready for customers</small></article>
+      <article class="stat-card"><span>Active sessions</span><strong id="activeSessions">3</strong><small>Currently in use</small></article>
+      <article class="stat-card"><span>Today's revenue</span><strong id="revenue">₹0</strong><small>Completed sessions + services</small></article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">WORKSTATIONS</p><h2>Computer status</h2></div>
+        <div class="legend"><span><i class="legend-dot available"></i>Available</span><span><i class="legend-dot busy"></i>In use</span><span><i class="legend-dot offline"></i>Offline</span></div>
+      </div>
+      <div id="computerGrid" class="computer-grid"></div>
+    </section>
+
+    <div class="content-grid">
+      <section class="panel">
+        <div class="section-heading"><div><p class="eyebrow">CUSTOMER DESK</p><h2>Start a session</h2></div></div>
+        <form id="sessionForm" class="form-grid">
+          <label>Customer name<input id="customerName" type="text" placeholder="e.g. Ganesh" required maxlength="60"></label>
+          <label>Computer<select id="computerSelect" required></select></label>
+          <label>Billing plan<select id="planSelect"><option value="hourly">Hourly — ₹40/hour</option><option value="student">Student — ₹30/hour</option><option value="member">Member — ₹25/hour</option></select></label>
+          <label>Estimated duration<select id="durationSelect"><option value="1">1 hour</option><option value="2">2 hours</option><option value="3">3 hours</option><option value="4">4 hours</option></select></label>
+          <button class="primary-button full-width" type="submit">Start session</button>
+        </form>
+        <p id="sessionMessage" class="message" role="status"></p>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading"><div><p class="eyebrow">SERVICE COUNTER</p><h2>Quick service</h2></div></div>
+        <form id="serviceForm" class="form-grid">
+          <label>Customer name<input id="serviceCustomer" type="text" placeholder="Customer name" required maxlength="60"></label>
+          <label>Service<select id="serviceType"><option value="Printing">Printing — ₹5/page</option><option value="Scanning">Scanning — ₹10/page</option><option value="Photocopy">Photocopy — ₹2/page</option><option value="Online form">Online form assistance — ₹50</option></select></label>
+          <label>Quantity<input id="serviceQuantity" type="number" min="1" max="500" value="1" required></label>
+          <button class="primary-button full-width" type="submit">Add service charge</button>
+        </form>
+        <p id="serviceMessage" class="message" role="status"></p>
+      </section>
+    </div>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">LIVE ACTIVITY</p><h2>Active sessions</h2></div>
+        <span class="pill" id="activePill">0 active</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Customer</th><th>Computer</th><th>Plan</th><th>Duration</th><th>Estimated bill</th><th>Action</th></tr></thead>
+          <tbody id="sessionTable"></tbody>
+        </table>
+      </div>
+      <p id="emptySessions" class="empty-state">No active sessions yet. Start a session above.</p>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><div><p class="eyebrow">RECENT TRANSACTIONS</p><h2>Billing history</h2></div><button id="clearHistory" class="secondary-button" type="button">Clear history</button></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time</th><th>Customer</th><th>Details</th><th>Amount</th></tr></thead>
+          <tbody id="historyTable"></tbody>
+        </table>
+      </div>
+      <p id="emptyHistory" class="empty-state">Completed sessions and services will appear here.</p>
+    </section>
+
+    
+    <footer>Byte Café · Demo project · Data stays in this browser session.</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
